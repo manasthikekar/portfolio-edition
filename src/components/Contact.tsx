@@ -16,6 +16,7 @@ import {
 import confetti from 'canvas-confetti';
 import { portfolioData, SocialLink } from '../data/portfolioData';
 import { MagneticButton } from './MagneticButton';
+import { GlassCard3D } from './GlassCard3D';
 
 export const Contact: React.FC = () => {
   const { personal, contactSection } = portfolioData;
@@ -38,10 +39,9 @@ export const Contact: React.FC = () => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) return;
 
-    // Trigger celebration confetti
     confetti({
-      particleCount: 80,
-      spread: 70,
+      particleCount: 90,
+      spread: 80,
       origin: { y: 0.7 },
       colors: ['#38bdf8', '#818cf8', '#c084fc', '#34d399'],
     });
@@ -72,18 +72,18 @@ export const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="relative py-28 bg-background-subtle overflow-hidden">
-      {/* Background illumination */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-primary/10 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
+      {/* 3D background aurora lights */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[550px] bg-primary/15 rounded-full blur-[170px] pointer-events-none animate-aurora" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-15 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 font-mono text-xs text-primary uppercase tracking-widest mb-3">
-            <span className="w-2 h-2 rounded-full bg-primary" />
+            <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#38bdf8]" />
             <span>09 // INITIATE TRANSMISSION</span>
           </div>
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight mb-4 drop-shadow-md">
             {contactSection.headline}
           </h2>
           <p className="text-sm sm:text-base text-text-muted leading-relaxed">
@@ -91,32 +91,32 @@ export const Contact: React.FC = () => {
           </p>
         </div>
 
-        {/* Contact Layout: Left Info & Socials, Right Message Form */}
+        {/* Contact Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Direct Email & Social Network Grid (5 cols) */}
+          {/* Left Column: Direct Email & 3D Social Grid (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
-            {/* Quick Email Card with Copy Trigger */}
-            <div className="p-6 rounded-2xl glass-panel relative overflow-hidden">
-              <div className="flex items-center gap-2 font-mono text-xs text-primary mb-2">
+            {/* Quick Email Card */}
+            <GlassCard3D intensity={10} neonBorder="cyan" className="p-6">
+              <div className="flex items-center gap-2 font-mono text-xs text-primary mb-2 pop-3d-1">
                 <Mail className="w-4 h-4" />
-                <span>DIRECT EMAIL CHANNEL</span>
+                <span className="font-semibold">DIRECT EMAIL CHANNEL</span>
               </div>
               <p className="text-sm text-text-muted mb-4">
                 Reach out for full-time roles, software engineering internships, or technical collaborations.
               </p>
 
-              <div className="flex items-center justify-between p-3 rounded-xl bg-background border border-white/10 gap-3">
-                <span className="font-mono text-xs sm:text-sm text-white truncate">
+              <div className="flex items-center justify-between p-3.5 rounded-xl bg-black/50 border border-white/10 gap-3 pop-3d-1 shadow-inner">
+                <span className="font-mono text-xs sm:text-sm text-white truncate font-medium">
                   {personal.contact.email}
                 </span>
                 <button
                   onClick={copyEmail}
-                  className="px-3 py-1.5 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 transition-all font-mono text-xs flex items-center gap-1.5 shrink-0 interactive-target"
+                  className="px-3.5 py-1.5 rounded-lg bg-primary/15 hover:bg-primary/25 text-primary border border-primary/40 transition-all font-mono text-xs flex items-center gap-1.5 shrink-0 interactive-target shadow-[0_0_12px_rgba(56,189,248,0.25)]"
                 >
                   {copied ? (
                     <>
                       <Check className="w-3.5 h-3.5 text-emerald-400" />
-                      <span className="text-emerald-400">Copied!</span>
+                      <span className="text-emerald-400 font-semibold">Copied!</span>
                     </>
                   ) : (
                     <>
@@ -126,25 +126,25 @@ export const Contact: React.FC = () => {
                   )}
                 </button>
               </div>
-            </div>
+            </GlassCard3D>
 
             {/* Social Network Profiles */}
-            <div className="p-6 rounded-2xl glass-panel">
-              <h3 className="font-heading text-sm font-semibold text-white uppercase tracking-wider mb-4">
+            <GlassCard3D intensity={8} neonBorder="violet" className="p-6">
+              <h3 className="font-heading text-sm font-semibold text-white uppercase tracking-wider mb-4 pop-3d-1">
                 Verified Socials & Code Profiles
               </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pop-3d-1">
                 {personal.socials.map((social) => (
                   <a
                     key={social.name}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-xl bg-background border border-white/5 hover:border-primary/40 hover:bg-white/[0.04] transition-all flex items-center justify-between group interactive-target"
+                    className="p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-primary/50 hover:bg-white/[0.07] transition-all flex items-center justify-between group interactive-target shadow-sm"
                   >
                     <div className="flex items-center gap-2.5">
-                      <div className="p-1.5 rounded-lg bg-white/[0.03] text-text-muted group-hover:text-primary transition-colors">
+                      <div className="p-1.5 rounded-lg bg-white/[0.04] text-text-muted group-hover:text-primary transition-colors">
                         {getSocialIcon(social.icon)}
                       </div>
                       <div>
@@ -162,19 +162,19 @@ export const Contact: React.FC = () => {
                   </a>
                 ))}
               </div>
-            </div>
+            </GlassCard3D>
 
             {/* Location & Relocation Info */}
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-text-muted font-mono flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400" />
+            <div className="p-4 rounded-xl glass-premium text-xs text-text-muted font-mono flex items-center gap-2 border border-white/10 shadow-md">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#10b981]" />
               <span>{personal.contact.locationDisplay}</span>
             </div>
           </div>
 
           {/* Right Column: Direct Message Form (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="p-6 sm:p-8 rounded-2xl glass-panel relative overflow-hidden">
-              <h3 className="font-heading text-xl font-bold text-white mb-2">
+            <GlassCard3D intensity={8} glareOpacity={0.2} className="p-6 sm:p-8">
+              <h3 className="font-heading text-xl font-bold text-white mb-2 pop-3d-1">
                 Send a Message
               </h3>
               <p className="text-xs sm:text-sm text-text-muted mb-6">
@@ -185,9 +185,9 @@ export const Contact: React.FC = () => {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="p-8 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-3"
+                  className="p-8 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-center space-y-3 shadow-2xl"
                 >
-                  <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+                  <div className="w-12 h-12 rounded-full bg-emerald-500/25 text-emerald-400 flex items-center justify-center mx-auto shadow-[0_0_20px_rgba(16,185,129,0.4)]">
                     <Check className="w-6 h-6" />
                   </div>
                   <h4 className="font-heading text-lg font-bold text-white">
@@ -198,10 +198,10 @@ export const Contact: React.FC = () => {
                   </p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4 pop-3d-1">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-mono text-text-secondary mb-1.5">
+                      <label className="block text-xs font-mono text-text-secondary mb-1.5 font-medium">
                         YOUR NAME *
                       </label>
                       <input
@@ -210,12 +210,12 @@ export const Contact: React.FC = () => {
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                         placeholder="e.g. Alex Mercer"
-                        className="w-full px-4 py-3 rounded-xl bg-background border border-white/10 text-white placeholder-slate-600 focus:outline-none focus:border-primary text-xs sm:text-sm transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-slate-600 focus:outline-none focus:border-primary text-xs sm:text-sm transition-colors shadow-inner"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-mono text-text-secondary mb-1.5">
+                      <label className="block text-xs font-mono text-text-secondary mb-1.5 font-medium">
                         EMAIL ADDRESS *
                       </label>
                       <input
@@ -224,13 +224,13 @@ export const Contact: React.FC = () => {
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                         placeholder="e.g. alex@company.com"
-                        className="w-full px-4 py-3 rounded-xl bg-background border border-white/10 text-white placeholder-slate-600 focus:outline-none focus:border-primary text-xs sm:text-sm transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-slate-600 focus:outline-none focus:border-primary text-xs sm:text-sm transition-colors shadow-inner"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono text-text-secondary mb-1.5">
+                    <label className="block text-xs font-mono text-text-secondary mb-1.5 font-medium">
                       SUBJECT
                     </label>
                     <input
@@ -238,12 +238,12 @@ export const Contact: React.FC = () => {
                       value={formState.subject}
                       onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
                       placeholder="e.g. Software Engineering Opportunity / Project Inquiry"
-                      className="w-full px-4 py-3 rounded-xl bg-background border border-white/10 text-white placeholder-slate-600 focus:outline-none focus:border-primary text-xs sm:text-sm transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-slate-600 focus:outline-none focus:border-primary text-xs sm:text-sm transition-colors shadow-inner"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono text-text-secondary mb-1.5">
+                    <label className="block text-xs font-mono text-text-secondary mb-1.5 font-medium">
                       MESSAGE CONTENT *
                     </label>
                     <textarea
@@ -252,14 +252,14 @@ export const Contact: React.FC = () => {
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                       placeholder="Tell me about your team, problem space, or what you'd like to build..."
-                      className="w-full px-4 py-3 rounded-xl bg-background border border-white/10 text-white placeholder-slate-600 focus:outline-none focus:border-primary text-xs sm:text-sm transition-colors resize-none"
+                      className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-slate-600 focus:outline-none focus:border-primary text-xs sm:text-sm transition-colors resize-none shadow-inner"
                     />
                   </div>
 
                   <MagneticButton>
                     <button
                       type="submit"
-                      className="px-6 py-3.5 rounded-xl font-semibold text-xs sm:text-sm text-black bg-gradient-to-r from-primary via-accent-cyan to-white hover:brightness-105 transition-all shadow-[0_0_20px_rgba(56,189,248,0.3)] flex items-center gap-2 interactive-target"
+                      className="px-6 py-3.5 rounded-xl font-semibold text-xs sm:text-sm text-black bg-gradient-to-r from-primary via-accent-cyan to-white hover:brightness-105 transition-all shadow-[0_0_25px_rgba(56,189,248,0.4)] flex items-center gap-2 interactive-target"
                     >
                       <Send className="w-4 h-4" />
                       <span>Transmit Message</span>
@@ -267,11 +267,10 @@ export const Contact: React.FC = () => {
                   </MagneticButton>
                 </form>
               )}
-            </div>
+            </GlassCard3D>
           </div>
         </div>
       </div>
     </section>
   );
 };
-

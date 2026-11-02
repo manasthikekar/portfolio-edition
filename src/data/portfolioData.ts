@@ -3,8 +3,7 @@
  * CENTRALIZED PORTFOLIO DATA CONFIGURATION
  * =========================================================================
  * All personal details, projects, skills, timeline events, and links
- * are configured here. You can modify this single file to update the entire
- * portfolio without touching component code.
+ * are configured here.
  */
 
 export interface SocialLink {
@@ -96,7 +95,6 @@ export interface PortfolioData {
     };
     contact: {
       email: string;
-      phone?: string;
       locationDisplay: string;
     };
     resume: {
@@ -149,23 +147,23 @@ export const portfolioData: PortfolioData = {
       learningFocus: "Distributed Systems, Advanced Algorithms & Modern Web Architectures",
     },
     contact: {
-      email: "contact@manasthikekar.dev", // Update with your actual email
+      email: "manasthikekar23@gmail.com",
       locationDisplay: "Open to Global Remote & Relocation Opportunities",
     },
     resume: {
-      url: "#contact", // Replace with your resume link or /resume.pdf
+      url: "#contact",
       fileName: "Manas_Thikekar_Resume.pdf",
     },
     socials: [
       {
         name: "GitHub",
-        url: "https://github.com",
+        url: "https://github.com/manasthikekar",
         icon: "Github",
-        handle: "@github",
+        handle: "@manasthikekar",
       },
       {
         name: "LinkedIn",
-        url: "https://linkedin.com",
+        url: "https://www.linkedin.com/in/manas-thikekar/",
         icon: "Linkedin",
         handle: "manas-thikekar",
       },
@@ -382,7 +380,7 @@ export const portfolioData: PortfolioData = {
       tags: ["TypeScript", "React", "Canvas API", "Tailwind CSS", "Algorithms"],
       metrics: ["60 FPS smoothly visualized", "12+ Algorithms implemented", "Zero external animation lag"],
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1400&auto=format&fit=crop",
-      githubUrl: "https://github.com",
+      githubUrl: "https://github.com/manasthikekar",
       liveUrl: "https://demo.example.com",
       featured: true,
       accentColor: "#38bdf8",
@@ -397,7 +395,7 @@ export const portfolioData: PortfolioData = {
       tags: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "REST API"],
       metrics: ["Sub-100ms API response time", "Full keyboard command palette", "Optimistic state synchronization"],
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1400&auto=format&fit=crop",
-      githubUrl: "https://github.com",
+      githubUrl: "https://github.com/manasthikekar",
       liveUrl: "https://demo.example.com",
       featured: true,
       accentColor: "#818cf8",
@@ -412,7 +410,7 @@ export const portfolioData: PortfolioData = {
       tags: ["TypeScript", "React", "Node.js", "MongoDB", "Docker", "Tailwind CSS"],
       metrics: ["Resumable multi-part upload", "Automatic checksum verification", "End-to-end token security"],
       image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1400&auto=format&fit=crop",
-      githubUrl: "https://github.com",
+      githubUrl: "https://github.com/manasthikekar",
       liveUrl: "https://demo.example.com",
       featured: true,
       accentColor: "#22d3ee",
@@ -427,7 +425,7 @@ export const portfolioData: PortfolioData = {
       tags: ["React", "TypeScript", "WebSocket", "Docker", "Tailwind CSS", "Monaco Editor"],
       metrics: ["Real-time multi-user synchronization", "Sub-second code compilation", "Isolated execution sandboxes"],
       image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1400&auto=format&fit=crop",
-      githubUrl: "https://github.com",
+      githubUrl: "https://github.com/manasthikekar",
       liveUrl: "https://demo.example.com",
       featured: false,
       accentColor: "#c084fc",
@@ -523,4 +521,3 @@ export const portfolioData: PortfolioData = {
     footerMessage: "Building, learning, and exploring what's next.",
   },
 };
-

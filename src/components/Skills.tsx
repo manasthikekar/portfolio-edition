@@ -12,6 +12,7 @@ import {
   CheckCircle,
 } from 'lucide-react';
 import { portfolioData, SkillCategory } from '../data/portfolioData';
+import { GlassCard3D } from './GlassCard3D';
 
 export const Skills: React.FC = () => {
   const { skills } = portfolioData;
@@ -43,35 +44,35 @@ export const Skills: React.FC = () => {
 
   return (
     <section id="skills" className="relative py-28 bg-background overflow-hidden">
-      {/* Subtle radial lights */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-accent-violet/5 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-96 h-96 bg-primary/5 rounded-full blur-[130px] pointer-events-none" />
+      {/* 3D ambient radial lights */}
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-accent-violet/10 rounded-full blur-[150px] pointer-events-none animate-aurora" />
+      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[140px] pointer-events-none animate-aurora-reverse" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <div className="flex items-center gap-2 font-mono text-xs text-primary uppercase tracking-widest mb-3">
-              <span className="w-2 h-2 rounded-full bg-primary" />
+              <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#38bdf8]" />
               <span>04 // TECHNICAL ARSENAL</span>
             </div>
-            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight drop-shadow-md">
               Skills & Engineering Stack
             </h2>
           </div>
-          <p className="text-sm text-text-muted max-w-md">
-            Technologies and core competencies strictly grounded in active practice, project execution, and algorithmic problem-solving.
+          <p className="text-sm text-text-muted max-w-md leading-relaxed">
+            Technologies and core competencies strictly grounded in active practice, production builds, and algorithmic problem-solving.
           </p>
         </div>
 
-        {/* Category Pill Filters */}
-        <div className="flex flex-wrap items-center gap-2 mb-10 pb-2 overflow-x-auto">
+        {/* Category Pill Filters with Glassmorphism */}
+        <div className="flex flex-wrap items-center gap-2 mb-12 p-2 rounded-2xl glass-premium shadow-lg max-w-fit overflow-x-auto">
           <button
             onClick={() => setSelectedCategory('all')}
-            className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all duration-200 flex items-center gap-2 interactive-target ${
+            className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all duration-300 flex items-center gap-2 interactive-target ${
               selectedCategory === 'all'
-                ? 'bg-primary text-black font-semibold shadow-[0_0_15px_rgba(56,189,248,0.4)]'
-                : 'bg-background-surface/80 text-text-secondary hover:text-white border border-white/10 hover:border-white/20'
+                ? 'bg-gradient-to-r from-primary to-accent-cyan text-black font-semibold shadow-[0_0_20px_rgba(56,189,248,0.5)]'
+                : 'text-text-secondary hover:text-white hover:bg-white/[0.06]'
             }`}
           >
             <Layers className="w-3.5 h-3.5" />
@@ -84,10 +85,10 @@ export const Skills: React.FC = () => {
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all duration-200 flex items-center gap-2 interactive-target ${
+                className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all duration-300 flex items-center gap-2 interactive-target ${
                   isSelected
-                    ? 'bg-primary text-black font-semibold shadow-[0_0_15px_rgba(56,189,248,0.4)]'
-                    : 'bg-background-surface/80 text-text-secondary hover:text-white border border-white/10 hover:border-white/20'
+                    ? 'bg-gradient-to-r from-primary to-accent-cyan text-black font-semibold shadow-[0_0_20px_rgba(56,189,248,0.5)]'
+                    : 'text-text-secondary hover:text-white hover:bg-white/[0.06]'
                 }`}
               >
                 {getCategoryIcon(category.icon)}
@@ -98,7 +99,7 @@ export const Skills: React.FC = () => {
         </div>
 
         {/* Categorized Skills Grid */}
-        <div className="space-y-10">
+        <div className="space-y-12">
           <AnimatePresence mode="wait">
             {displayedCategories.map((category) => (
               <motion.div
@@ -111,7 +112,7 @@ export const Skills: React.FC = () => {
               >
                 {selectedCategory === 'all' && (
                   <div className="flex items-center gap-3 pt-2">
-                    <div className="p-2 rounded-lg bg-white/[0.04] border border-white/10 text-primary">
+                    <div className="p-2 rounded-xl glass-premium text-primary shadow-sm">
                       {getCategoryIcon(category.icon)}
                     </div>
                     <div>
@@ -125,18 +126,18 @@ export const Skills: React.FC = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {category.skills.map((skill, sIdx) => (
-                    <div
+                    <GlassCard3D
                       key={sIdx}
-                      className="group p-4 rounded-xl bg-background-surface/60 border border-white/[0.07] hover:border-primary/40 hover:bg-background-elevated/70 transition-all duration-300 relative overflow-hidden"
+                      intensity={10}
+                      neonBorder={sIdx % 2 === 0 ? 'cyan' : 'violet'}
+                      className="p-5"
                     >
-                      <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-colors pointer-events-none" />
-
                       <div className="flex items-start justify-between gap-2 mb-2">
-                        <span className="font-heading font-medium text-sm text-text-primary group-hover:text-primary transition-colors">
+                        <span className="font-heading font-semibold text-sm text-text-primary group-hover:text-primary transition-colors pop-3d-1">
                           {skill.name}
                         </span>
                         {skill.badge && (
-                          <span className="px-2 py-0.5 rounded-md font-mono text-[10px] bg-primary/10 border border-primary/20 text-primary shrink-0">
+                          <span className="px-2.5 py-0.5 rounded-md font-mono text-[10px] bg-primary/10 border border-primary/30 text-primary shadow-sm shrink-0 pop-3d-2">
                             {skill.badge}
                           </span>
                         )}
@@ -147,7 +148,7 @@ export const Skills: React.FC = () => {
                           {skill.description}
                         </p>
                       )}
-                    </div>
+                    </GlassCard3D>
                   ))}
                 </div>
               </motion.div>
@@ -158,4 +159,3 @@ export const Skills: React.FC = () => {
     </section>
   );
 };
-

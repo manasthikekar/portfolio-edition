@@ -9,7 +9,6 @@ export const Footer: React.FC = () => {
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      // IST / Indian Standard Time (UTC+5:30)
       const options: Intl.DateTimeFormatOptions = {
         timeZone: 'Asia/Kolkata',
         hour: '2-digit',
@@ -92,4 +91,3 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
-
