@@ -7,6 +7,14 @@
     <title>Manas Thikekar | Software Engineer & Creative Developer</title>
     <meta name="description" content="Portfolio of Manas Thikekar — Software Engineer, Creative Developer & Problem Solver passionate about distributed systems, modern web engineering, and competitive programming." />
     
+    <script>
+      // When deployed to GitHub Pages root (/portfolio-edition/), route to the compiled production build in /dist/
+      if (window.location.hostname.includes('github.io') && !window.location.pathname.includes('/dist')) {
+        var base = window.location.pathname.replace(/\/$/, '');
+        window.location.replace(base + '/dist/' + window.location.search + window.location.hash);
+      }
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,4 +28,3 @@
     <div id="root"></div>
   </body>
 </html>
-
